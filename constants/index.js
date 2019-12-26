@@ -1,0 +1,5 @@
+export const WORKITEM_STATES = {
+  CREATED: 'CREATED',
+  CLOSED: "CLOSED",
+  OPENED: "OPENED"
+};
