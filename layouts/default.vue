@@ -1,20 +1,20 @@
 <template>
   <div>
+    <AppHeader />
     <nuxt/>
   </div>
 </template>
 
+<script>
+export default {
+  components: {
+    AppHeader: async () => await import('~/components/AppHeader'),
+  },
+};
+</script>
+
 <style>
 .right-align {
   text-align: right;
-}
-
-.list-header {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.list-row {
-  margin-bottom: 10px;
 }
 </style>

@@ -3,14 +3,15 @@
     <div class="row">
       <button @click="addRandom">Add</button>
     </div>
-    <div class="row list-header">
-      <div class="col-1">Ид</div>
-      <div class="col">Наименование</div>
+    <div :class="['row', $style.listHeader]">
+      <div class="col-1">ID</div>
+      <div class="col">Название</div>
+      <div class="col-2">Комментарии</div>
       <div class="col-1 right-align">Статус</div>
-      <div class="col-3" />
+      <div class="col-3">Действия</div>
     </div>
-    <WorkItem
-      class="row list-row"
+    <WorkItemRow
+      :class="['row', $style.listRow]"
       v-for="item in workItems"
       :key="item.id"
       v-bind="item"
@@ -23,12 +24,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import { WORKITEM_STATES } from '~/constants';
-import WorkItem from '~/components/WorkItem';
+import { WORKITEM_STATUSES } from '~/constants';
+import WorkItemRow from '~/components/WorkItemRow';
 
 export default {
+  name: "WorkItemList",
   components: {
-    WorkItem,
+    WorkItemRow,
   },
   computed: {
     ...mapGetters(["workItems"])
@@ -49,15 +51,31 @@ export default {
     open(id) {
       this.setStatus({
         id,
-        status: WORKITEM_STATES.OPENED
+        status: WORKITEM_STATUSES.OPENED
       });
     },
     close(id) {
       this.setStatus({
         id,
-        status: WORKITEM_STATES.CLOSED
+        status: WORKITEM_STATUSES.CLOSED
       });
     },
   },
 };
 </script>
+
+<style module>
+.listHeader {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color:lightblue;
+}
+
+.listRow {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.listRow:nth-child(even) {
+  background-color: beige;
+}
+</style>

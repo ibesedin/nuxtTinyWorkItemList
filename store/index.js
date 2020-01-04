@@ -1,4 +1,4 @@
-import { WORKITEM_STATES } from '~/constants';
+import { WORKITEM_STATUSES } from '~/constants';
 
 export const state = () => ({
   workItems: [],
@@ -7,7 +7,7 @@ export const state = () => ({
 export const getters = {
   workItems(state) {
     return state.workItems;
-  }
+  },
 };
 
 export const mutations = {
@@ -29,7 +29,7 @@ export const actions = {
   add({ commit }, payload) {
     commit('add', {
       ...payload,
-      status: WORKITEM_STATES.CREATED,
+      status: WORKITEM_STATUSES.CREATED,
     });
   },
   remove({ commit }, id) {
@@ -37,7 +37,7 @@ export const actions = {
   },
   setStatus({ commit }, payload) {
     const { status } = payload;
-    if (!Object.values(WORKITEM_STATES).includes(status)) {
+    if (!Object.values(WORKITEM_STATUSES).includes(status)) {
       throw new Error(`Invalid status ${status}`);
     }
 

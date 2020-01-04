@@ -8,6 +8,7 @@
 import WorkItemList from '~/components/WorkItemList';
 
 export default {
+  name: 'PageMain',
   components: {
     WorkItemList,
   },
