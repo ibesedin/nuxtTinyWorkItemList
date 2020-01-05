@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="row">
-      <button @click="addRandom">Add</button>
+      Current project: {{ projectId }}&nbsp;
+      <button @click="addRandom">add task</button>
     </div>
     <div :class="['row', $style.listHeader]">
       <div class="col-1">ID</div>
@@ -12,19 +13,19 @@
     </div>
     <TaskRow
       :class="['row', $style.listRow]"
-      v-for="item in tasks"
-      :key="item.id"
-      v-bind="item"
+      v-for="task in tasks"
+      :key="task.id"
+      v-bind="{ task }"
       @open="open"
       @close="close"
-      @remove="remove"
+      @remove="removeTask"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import { TASK_STATUSES } from '~/constants';
+import { mapGetters, mapActions, mapState } from 'vuex';
+import { TASK_STATUS } from '~/classes/task';
 import TaskRow from '~/components/TaskRow';
 
 export default {
@@ -33,31 +34,32 @@ export default {
     TaskRow,
   },
   computed: {
+    ...mapState(['projectId']),
     ...mapGetters(["tasks"])
   },
   methods: {
     ...mapActions([
-      'add',
-      'setStatus',
-      'remove',
+      'addTask',
+      'changeTaskStatus',
+      'removeTask',
       'generateId',
     ]),
     async addRandom() {
-      this.add({
+      this.addTask({
         id: await this.generateId(),
         name: new Date().toString(),
       });
     },
     open(id) {
-      this.setStatus({
+      this.changeTaskStatus({
         id,
-        status: TASK_STATUSES.OPENED,
+        status: TASK_STATUS.OPENED,
       });
     },
     close(id) {
-      this.setStatus({
+      this.changeTaskStatus({
         id,
-        status: TASK_STATUSES.CLOSED,
+        status: TASK_STATUS.CLOSED,
       });
     },
   },

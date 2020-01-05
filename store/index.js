@@ -1,4 +1,4 @@
-import { TASK_STATUSES } from '~/constants';
+import Task from '~/classes/task';
 
 export const state = () => ({
   projectId: null,
@@ -13,37 +13,43 @@ export const getters = {
 };
 
 export const mutations = {
-  add(state, payload) {
+  setProject(state, payload) {
+    state.projectId = payload;
+    state.tasks = [];
+    state.comments = [];
+  },
+  addTask(state, payload) {
     state.tasks.push(payload);
   },
-  remove(state, id) {
+  addComment(state, payload) {
+    state.comments.push(payload);
+  },
+  removeTask(state, id) {
     state.tasks = state.tasks.filter(item => item.id !== id);
   },
-  setStatus(state, { id, status }) {
+  removeComment(state, id) {
+    state.comments = state.comments.filter(item => item.id !== id);
+  },
+  changeTaskStatus(state, { id, status }) {
     const item = state.tasks.find(item => item.id === id);
     if (item) {
-      item.status = status;
+      item.setStatus(status);
     }
   },
 };
 
 export const actions = {
-  add({ commit }, payload) {
-    commit('add', {
-      ...payload,
-      status: TASK_STATUSES.CREATED,
-    });
+  setProject({ commit }, payload) {
+    commit('setProject', payload);
   },
-  remove({ commit }, id) {
-    commit('remove', id);
+  addTask({ state: { projectId }, commit }, payload) {
+    commit('addTask', new Task({ ...payload, projectId }));
   },
-  setStatus({ commit }, payload) {
-    const { status } = payload;
-    if (!Object.values(TASK_STATUSES).includes(status)) {
-      throw new Error(`Invalid status ${status}`);
-    }
-
-    commit('setStatus', payload);
+  removeTask({ commit }, id) {
+    commit('removeTask', id);
+  },
+  changeTaskStatus({ commit }, payload) {
+    commit('changeTaskStatus', payload);
   },
   generateId({ state }) {
     let id;

@@ -1,17 +1,9 @@
-export const TASK_STATUSES = {
-  CREATED: 'CREATED',
-  CLOSED: "CLOSED",
-  OPENED: "OPENED"
+export const COMMENT_TYPES = {
+  COMMENT: 'COMMENT',
+  REPRIMAND: 'REPRIMAND',
 };
 
-export const PROP_KEYS = {
-  ID: 'id',
-  NAME: 'name',
-  STATUS: 'status',
-};
-
-export const PROP_NAMES = {
-  [PROP_KEYS.ID]: 'ID',
-  [PROP_KEYS.NAME]: 'Название',
-  [PROP_KEYS.STATUS]: 'Статус',
+export const COMMENT_TYPE_TEXT = {
+  [COMMENT_TYPES.COMMENT]: 'Комментарий',
+  [COMMENT_TYPES.REPRIMAND]: 'Замечание',
 };

@@ -1,53 +1,34 @@
 <template>
   <div class="container">
     <div
-      v-for="item in propTable"
-      :key="item.label"
+      v-for="prop in propTable"
+      :key="prop.label"
       class="row"
     >
       <div class="col-2">
-        {{ item.label }}
+        {{ prop.label }}
       </div>
       <div class="col">
-        {{ item.value }}
+        {{ prop.value }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {
-  TASK_STATUSES,
-  PROP_KEYS,
-  PROP_NAMES,
-} from '~/constants';
+import Task from '~/classes/task';
 
 export default {
   name: "TaskCard",
   props: {
-    id: {
-      type: Number,
+    task : {
+      type: Task,
       required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    duration: {
-      type: Number,
-      default: 0,
-    },
-    status: {
-      type: String,
-      default: TASK_STATUSES.CREATED,
     },
   },
   computed: {
     propTable() {
-      return Object.values(PROP_KEYS).map(key => ({
-        label: PROP_NAMES[key],
-        value: this[key],
-      }));
+      return this.task.getPropTable();
     },
   },
 };
