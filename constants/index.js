@@ -1,4 +1,4 @@
-export const WORKITEM_STATUSES = {
+export const TASK_STATUSES = {
   CREATED: 'CREATED',
   CLOSED: "CLOSED",
   OPENED: "OPENED"

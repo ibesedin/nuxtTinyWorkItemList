@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-1">
-      <NuxtLink :to="`/works/${id}`">
+      <NuxtLink :to="`/tasks/${id}`">
         {{ id }}
       </NuxtLink>
     </div>
@@ -29,10 +29,10 @@
 </template>
 
 <script>
-import { WORKITEM_STATUSES } from '~/constants';
+import { TASK_STATUSES } from '~/constants';
 
 export default {
-  name: "WorkItemRow",
+  name: "TaskRow",
   props: {
     id: {
       type: Number,
@@ -48,15 +48,15 @@ export default {
     },
     status: {
       type: String,
-      default: WORKITEM_STATUSES.CREATED,
+      default: TASK_STATUSES.CREATED,
     },
   },
   computed: {
     isOpened() {
-      return this.status === WORKITEM_STATUSES.OPENED;
+      return this.status === TASK_STATUSES.OPENED;
     },
     isClosed() {
-      return this.status === WORKITEM_STATUSES.CLOSED;
+      return this.status === TASK_STATUSES.CLOSED;
     },
   }
 };

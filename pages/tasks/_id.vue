@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <WorkItemCard v-bind="item" />
+    <TaskCard v-bind="item" />
   </div>
 </template>
 
 <script>
-import WorkItemCard from '~/components/WorkItemCard';
+import TaskCard from '~/components/TaskCard';
 
 export default {
-  name: 'PageWorksId',
+  name: 'PageTasksId',
   components: {
-    WorkItemCard,
+    TaskCard,
   },
   validate({ params: { id } }) {
     return /^\d+$/.test(id);
@@ -18,7 +18,7 @@ export default {
   asyncData({
     store: {
       getters: {
-        workItems
+        tasks,
       },
     },
     error,
@@ -27,7 +27,7 @@ export default {
     },
   }) {
     const idInt = parseInt(id, 10);
-    const item = workItems.find(item => item.id === idInt);
+    const item = tasks.find(item => item.id === idInt);
 
     if (!item) {
       error({ statusCode: 404, message: 'Invalid work ID' });

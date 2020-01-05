@@ -1,24 +1,26 @@
-import { WORKITEM_STATUSES } from '~/constants';
+import { TASK_STATUSES } from '~/constants';
 
 export const state = () => ({
-  workItems: [],
+  projectId: null,
+  tasks: [],
+  comments: [],
 });
 
 export const getters = {
-  workItems(state) {
-    return state.workItems;
+  tasks(state) {
+    return state.tasks;
   },
 };
 
 export const mutations = {
   add(state, payload) {
-    state.workItems.push(payload);
+    state.tasks.push(payload);
   },
   remove(state, id) {
-    state.workItems = state.workItems.filter(item => item.id !== id);
+    state.tasks = state.tasks.filter(item => item.id !== id);
   },
   setStatus(state, { id, status }) {
-    const item = state.workItems.find(item => item.id === id);
+    const item = state.tasks.find(item => item.id === id);
     if (item) {
       item.status = status;
     }
@@ -29,7 +31,7 @@ export const actions = {
   add({ commit }, payload) {
     commit('add', {
       ...payload,
-      status: WORKITEM_STATUSES.CREATED,
+      status: TASK_STATUSES.CREATED,
     });
   },
   remove({ commit }, id) {
@@ -37,7 +39,7 @@ export const actions = {
   },
   setStatus({ commit }, payload) {
     const { status } = payload;
-    if (!Object.values(WORKITEM_STATUSES).includes(status)) {
+    if (!Object.values(TASK_STATUSES).includes(status)) {
       throw new Error(`Invalid status ${status}`);
     }
 
@@ -48,7 +50,7 @@ export const actions = {
     do
     {
       id = Math.floor(Math.random() * 100);
-    } while (state.workItems.find(item => item.id === id));
+    } while (state.tasks.find(item => item.id === id));
     return id;
-  }
+  },
 };

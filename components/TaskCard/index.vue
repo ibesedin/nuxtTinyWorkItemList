@@ -17,13 +17,13 @@
 
 <script>
 import {
-  WORKITEM_STATUSES,
+  TASK_STATUSES,
   PROP_KEYS,
   PROP_NAMES,
 } from '~/constants';
 
 export default {
-  name: "WorkItemCard",
+  name: "TaskCard",
   props: {
     id: {
       type: Number,
@@ -39,7 +39,7 @@ export default {
     },
     status: {
       type: String,
-      default: WORKITEM_STATUSES.CREATED,
+      default: TASK_STATUSES.CREATED,
     },
   },
   computed: {

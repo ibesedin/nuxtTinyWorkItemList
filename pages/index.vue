@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <WorkItemList />
+    <TaskList />
   </div>
 </template>
 
 <script>
-import WorkItemList from '~/components/WorkItemList';
+import TaskList from '~/components/TaskList';
 
 export default {
   name: 'PageMain',
   components: {
-    WorkItemList,
+    TaskList,
   },
 };
 </script>

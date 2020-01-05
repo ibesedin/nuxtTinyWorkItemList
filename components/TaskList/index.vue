@@ -10,9 +10,9 @@
       <div class="col-1 right-align">Статус</div>
       <div class="col-3">Действия</div>
     </div>
-    <WorkItemRow
+    <TaskRow
       :class="['row', $style.listRow]"
-      v-for="item in workItems"
+      v-for="item in tasks"
       :key="item.id"
       v-bind="item"
       @open="open"
@@ -24,16 +24,16 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import { WORKITEM_STATUSES } from '~/constants';
-import WorkItemRow from '~/components/WorkItemRow';
+import { TASK_STATUSES } from '~/constants';
+import TaskRow from '~/components/TaskRow';
 
 export default {
-  name: "WorkItemList",
+  name: "TaskList",
   components: {
-    WorkItemRow,
+    TaskRow,
   },
   computed: {
-    ...mapGetters(["workItems"])
+    ...mapGetters(["tasks"])
   },
   methods: {
     ...mapActions([
@@ -51,13 +51,13 @@ export default {
     open(id) {
       this.setStatus({
         id,
-        status: WORKITEM_STATUSES.OPENED
+        status: TASK_STATUSES.OPENED,
       });
     },
     close(id) {
       this.setStatus({
         id,
-        status: WORKITEM_STATUSES.CLOSED
+        status: TASK_STATUSES.CLOSED,
       });
     },
   },
