@@ -1,16 +1,17 @@
 export const TASK_TYPE = {
-  PREDEFINED: 'PREDEFINED',
+  PLANNED: 'PLANNED',
   ONSITE: 'ONSITE',
 };
 
 export const TASK_STATUS = {
   CREATED: 'CREATED',
+  CONFIRMAWAIT: 'CONFIRMAWAIT',
   OPENED: 'OPENED',
   CLOSED: 'CLOSED',
 };
 
 export default class Task {
-  id = 0;
+  id = null;
   projectId = null;
   type = null;
   name = null;
@@ -70,6 +71,7 @@ export default class Task {
     if (key === 'status') {
       return {
         [TASK_STATUS.CREATED]: 'Новая',
+        [TASK_STATUS.CONFIRMAWAIT]: 'Ожидает подтверждения',
         [TASK_STATUS.OPENED]: 'Открыта',
         [TASK_STATUS.CLOSED]: 'Закрыта',
       }[this.status] || this.status;
@@ -77,7 +79,7 @@ export default class Task {
 
     if (key === 'type') {
       return {
-        [TASK_TYPE.PREDEFINED]: 'КСГ',
+        [TASK_TYPE.PLANNED]: 'КСГ',
         [TASK_TYPE.ONSITE]: 'На месте',
       }[this.type] || this.tyoe;
     }
@@ -92,7 +94,7 @@ export default class Task {
       'projectId',
       'name',
       'duration',
-      'status'
+      'status',
     ].map(key => ({
       label: this.getPropNameText(key),
       value: this.getPropValueText(key),

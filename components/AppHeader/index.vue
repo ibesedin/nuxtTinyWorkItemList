@@ -11,6 +11,9 @@
         <NuxtLink to="/tasks">
           Tasks
         </NuxtLink>
+        <NuxtLink to="/comments">
+          Comments
+        </NuxtLink>
       </div>
     </div>
   </div>

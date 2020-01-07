@@ -1,25 +1,23 @@
 <template>
   <div class="container">
-    <TaskList v-if="projectId" />
-    <div v-else>
-      Не выбран ни один проект.
-    </div>
+    <TaskList v-if="currentProject" />
+    <ProjectWarning v-else />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import TaskList from '~/components/TaskList';
+import ProjectWarning from '~/components/ProjectWarning';
 
 export default {
   name: 'PageMain',
   components: {
     TaskList,
+    ProjectWarning,
   },
   computed: {
-    ...mapState([
-      'projectId',
-    ]),
+    ...mapGetters(['currentProject']),
   },
 };
 </script>

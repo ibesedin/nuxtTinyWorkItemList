@@ -1,6 +1,12 @@
 <template>
   <div class="container">
-    <TaskCard v-bind="{ task }" />
+    <TaskCard
+      v-if="task"
+      v-bind="{ task }"
+    />
+    <div v-else>
+      Задача с ID {{ id }} не найдена.
+    </div>
   </div>
 </template>
 
@@ -27,13 +33,10 @@ export default {
     },
   }) {
     const idInt = parseInt(id, 10);
-    const task = tasks.find(item => item.id === idInt);
-
-    if (!task) {
-      error({ statusCode: 404, message: 'Invalid work ID' });
-    }
+    const task = tasks.find(item => item.id === idInt) || null;
     
     return {
+      id,
       task,
     };
   },

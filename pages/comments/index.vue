@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="currentProject">
-      Текущий проект: {{ currentProject.name }}
-    </div>
+    <div v-if="currentProject" />
     <ProjectWarning v-else />
   </div>
 </template>
