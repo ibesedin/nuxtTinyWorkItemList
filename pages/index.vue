@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="$style.pageMain">
     <div v-if="currentProject">
       Текущий проект: {{ currentProject.name }}
     </div>
@@ -20,3 +20,9 @@ export default {
   },
 };
 </script>
+
+<style module>
+.pageMain {
+
+}
+</style>

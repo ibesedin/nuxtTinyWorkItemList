@@ -1,5 +1,5 @@
 <template>
-  <div :class="['container', $style.appHeader]">
+  <div :class="$style.appHeader">
     <div class="row">
       <div class="col">
         <NuxtLink to='/'>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="$style.pageProjects">
     <div>Проекты:</div>
     <div
       v-for="project in projects"
@@ -32,3 +32,9 @@ export default {
   },
 };
 </script>
+
+<style module>
+.pageProjects {
+
+}
+</style>

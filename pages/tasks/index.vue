@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="$style.pageTasks">
     <TaskList v-if="currentProject" />
     <ProjectWarning v-else />
   </div>
@@ -21,3 +21,9 @@ export default {
   },
 };
 </script>
+
+<style module>
+.pageTasks {
+
+}
+</style>

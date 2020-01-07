@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="$style.pageComments">
     <div v-if="currentProject" />
     <ProjectWarning v-else />
   </div>
@@ -18,3 +18,9 @@ export default {
   },
 };
 </script>
+
+<style module>
+.pageComments {
+
+}
+</style>

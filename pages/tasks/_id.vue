@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="$style.pageTaskId">
     <TaskCard
       v-if="task"
       v-bind="{ task }"
@@ -42,3 +42,9 @@ export default {
   },
 };
 </script>
+
+<style module>
+.pageTaskId {
+
+}
+</style>
