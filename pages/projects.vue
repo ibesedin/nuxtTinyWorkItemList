@@ -16,6 +16,7 @@
 import { mapActions, mapState } from 'vuex';
 
 export default {
+  name: 'PageProjects',
   computed: {
     ...mapState([
       'projects',

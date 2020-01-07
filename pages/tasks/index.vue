@@ -1,6 +1,9 @@
 <template>
   <div :class="$style.pageTasks">
-    <TaskList v-if="currentProject" />
+    <TaskList
+      v-if="currentProject"
+      v-bind="{ tasks }"
+    />
     <ProjectWarning v-else />
   </div>
 </template>
@@ -11,13 +14,16 @@ import TaskList from '~/components/TaskList';
 import ProjectWarning from '~/components/ProjectWarning';
 
 export default {
-  name: 'PageMain',
+  name: 'PageTasks',
   components: {
     TaskList,
     ProjectWarning,
   },
   computed: {
-    ...mapGetters(['currentProject']),
+    ...mapGetters([
+      'currentProject',
+      'tasks',
+    ]),
   },
 };
 </script>

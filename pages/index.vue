@@ -12,6 +12,7 @@ import { mapGetters } from 'vuex';
 import ProjectWarning from '~/components/ProjectWarning';
 
 export default {
+  name: 'PageMain',
   components: {
     ProjectWarning,
   },

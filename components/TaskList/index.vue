@@ -32,21 +32,24 @@ export default {
   components: {
     TaskRow,
   },
+  props: {
+    tasks: {
+      type: Array,
+      default: () => ([]),
+    },
+  },
   computed: {
-    ...mapGetters([
-      'tasks',
-      'currentProject',
-    ]),
+    ...mapGetters(['currentProject']),
   },
   methods: {
     ...mapActions([
       'addTask',
       'changeTaskStatus',
-      'generateId',
+      'generateTaskId',
     ]),
     async addRandom() {
       this.addTask({
-        id: await this.generateId(),
+        id: await this.generateTaskId(),
         name: new Date().toString(),
       });
     },

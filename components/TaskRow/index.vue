@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div>
     <div class="col-1">
       <NuxtLink :to="`/tasks/${task.id}`">
         {{ task.id }}

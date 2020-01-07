@@ -1,6 +1,10 @@
 import Task from '~/classes/task';
+import Comment from '~/classes/comment';
 
 export const strict = true;
+
+let taskId = 0;
+let commentId = 0;
 
 export const state = () => ({
   projectId: null,
@@ -64,18 +68,23 @@ export const actions = {
     const { state: { projectId }, commit } = context;
     commit('addTask', new Task({ ...payload, context, projectId }));
   },
+  addComment(context, payload) {
+    const { state: { projectId }, commit } = context;
+    commit('addComment', new Comment({ ...payload, context, projectId }));
+  },
   removeTask({ commit }, id) {
     commit('removeTask', id);
+  },
+  removeComment({ commit }, id) {
+    commit('removeComment', id);
   },
   changeTaskStatus({ commit }, payload) {
     commit('changeTaskStatus', payload);
   },
-  generateId({ state }) {
-    let id;
-    do
-    {
-      id = Math.floor(Math.random() * 100);
-    } while (state.tasks.find(item => item.id === id));
-    return id;
+  generateTaskId() {
+    return ++taskId;
+  },
+  generateCommentId() {
+    return ++commentId;
   },
 };
