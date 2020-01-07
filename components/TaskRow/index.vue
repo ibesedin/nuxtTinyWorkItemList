@@ -10,7 +10,7 @@
       0 комментариев
     </div>
     <div class="col-1 right-align">{{ status }}</div>
-    <div class="col-3">
+    <div class="col-2">
       <button
         v-if="!task.isOpened"
         @click="$emit('open', task.id)"
@@ -23,7 +23,6 @@
       >
         Close
       </button>
-      <button @click="$emit('remove', task.id)">Remove</button>
     </div>
   </div>
 </template>

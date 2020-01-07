@@ -9,7 +9,7 @@
       <div class="col">Название</div>
       <div class="col-2">Комментарии</div>
       <div class="col-1 right-align">Статус</div>
-      <div class="col-3">Действия</div>
+      <div class="col-2">Действия</div>
     </div>
     <TaskRow
       :class="['row', $style.listRow]"
@@ -18,7 +18,6 @@
       v-bind="{ task }"
       @open="open"
       @close="close"
-      @remove="removeTask"
     />
   </div>
 </template>
@@ -43,7 +42,6 @@ export default {
     ...mapActions([
       'addTask',
       'changeTaskStatus',
-      'removeTask',
       'generateId',
     ]),
     async addRandom() {
