@@ -27,14 +27,13 @@ export default {
         tasks,
       },
     },
-    error,
     params: {
       id,
     },
   }) {
     const idInt = parseInt(id, 10);
     const task = tasks.find(item => item.id === idInt) || null;
-    
+
     return {
       id,
       task,
