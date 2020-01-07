@@ -11,6 +11,7 @@ export const TASK_STATUS = {
 };
 
 export default class Task {
+  #context = null;
   id = null;
   projectId = null;
   type = null;
@@ -24,7 +25,8 @@ export default class Task {
     type = TASK_TYPE.ONSITE,
     name = null,
     duration = 0,
-    status = TASK_STATUS.CREATED
+    status = TASK_STATUS.CREATED,
+    context,
   }) {
     if (!id) {
       throw new Error('Invalid Task id');
@@ -33,12 +35,18 @@ export default class Task {
       throw new Error('Invalid current project id');
     }
 
+    this.#context = context;
+    
     this.id = id;
     this.projectId = projectId;
     this.type = type;
     this.name = name;
     this.duration = duration;
     this.status = status;
+  }
+
+  get comments() {
+    return this.#context.getters.comments.filter(c => c.taskId === this.id);
   }
 
   get isOpened() {

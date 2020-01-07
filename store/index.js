@@ -1,5 +1,7 @@
 import Task from '~/classes/task';
 
+export const strict = true;
+
 export const state = () => ({
   projectId: null,
   projects: [
@@ -19,6 +21,9 @@ export const state = () => ({
 export const getters = {
   tasks(state) {
     return state.tasks;
+  },
+  comments(state) {
+    return state.comments;
   },
   currentProject(state) {
     return state.projects.find(pr => pr.id === state.projectId);
@@ -55,8 +60,9 @@ export const actions = {
   setProject({ commit }, payload) {
     commit('setProject', payload);
   },
-  addTask({ state: { projectId }, commit }, payload) {
-    commit('addTask', new Task({ ...payload, projectId }));
+  addTask(context, payload) {
+    const { state: { projectId }, commit } = context;
+    commit('addTask', new Task({ ...payload, context, projectId }));
   },
   removeTask({ commit }, id) {
     commit('removeTask', id);

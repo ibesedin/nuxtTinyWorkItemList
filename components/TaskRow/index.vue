@@ -7,7 +7,7 @@
     </div>
     <div class="col">{{ task.name }}</div>
     <div class="col-2">
-      0 комментариев
+      {{ task.comments.length }} комментариев
     </div>
     <div class="col-1 right-align">{{ status }}</div>
     <div class="col-2">
