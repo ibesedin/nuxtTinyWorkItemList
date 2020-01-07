@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="row">
-      Current project: {{ projectId }}&nbsp;
-      <button @click="addRandom">add task</button>
+      Проект: {{ currentProject.name }}&nbsp;
+      <button @click="addRandom">Добавить</button>
     </div>
     <div :class="['row', $style.listHeader]">
       <div class="col-1">ID</div>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { TASK_STATUS } from '~/classes/task';
 import TaskRow from '~/components/TaskRow';
 
@@ -34,8 +34,10 @@ export default {
     TaskRow,
   },
   computed: {
-    ...mapState(['projectId']),
-    ...mapGetters(["tasks"])
+    ...mapGetters([
+      'tasks',
+      'currentProject',
+    ]),
   },
   methods: {
     ...mapActions([

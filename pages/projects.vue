@@ -1,10 +1,9 @@
 <template>
   <div class="container">
-    <div class="row">Select project:</div>
+    <div>Проекты:</div>
     <div
       v-for="project in projects"
       :key="project.id"
-      class="row"
     >
       <div class="col">
         <a href="#" @click.prevent="select(project)">{{ project.name }}</a>
@@ -14,17 +13,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
-  data: () => ({
-    projects: [
-      {
-        id: 'id1',
-        name: 'Project1',
-      },
-    ],
-  }),
+  computed: {
+    ...mapState([
+      'projects',
+    ]),
+  },
   methods: {
     ...mapActions([
       'setProject',

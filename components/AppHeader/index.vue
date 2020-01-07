@@ -27,3 +27,9 @@ export default {
   margin-bottom: 20px;
 }
 </style>
+
+<style>
+.nuxt-link-exact-active {
+  font-weight: bold;
+}
+</style>

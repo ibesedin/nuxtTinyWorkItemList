@@ -2,6 +2,16 @@ import Task from '~/classes/task';
 
 export const state = () => ({
   projectId: null,
+  projects: [
+    {
+      id: 'id1',
+      name: 'Project 1',
+    },
+    {
+      id: 'id2',
+      name: 'Project 2',
+    },
+  ],
   tasks: [],
   comments: [],
 });
@@ -9,6 +19,9 @@ export const state = () => ({
 export const getters = {
   tasks(state) {
     return state.tasks;
+  },
+  currentProject(state) {
+    return state.projects.find(pr => pr.id === state.projectId);
   },
 };
 
