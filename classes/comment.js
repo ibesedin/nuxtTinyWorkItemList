@@ -58,13 +58,22 @@ export default class Comment {
     return this[key];
   }
 
+  getPropEditor(key) {
+    return {
+      image: 'ImageEditor',
+      text: 'TextAreaEditor',
+    }[key] || 'LabelEditor';
+  }
+
   getPropTable() {
     return [
+      'id',
       'type',
       'image',
       'text',
     ].map(key => ({
       label: this.getPropNameText(key),
+      editor: this.getPropEditor(key),
       value: this.getPropValueText(key),
     }));
   }
